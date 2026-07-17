@@ -68,12 +68,12 @@ func _generate_tone(
 	var data := PackedByteArray()
 	data.resize(num_samples * 2)  # 16-bit mono
 
-	var amp := volume * 0.6
+	var amp: float = volume * 0.6
 	for i in num_samples:
-		var t := float(i) / SAMPLE_RATE
-		var env := envelope_func.call(t, duration)
-		var sample := sin(2.0 * PI * frequency * t) * amp * env
-		var s16 := int(clampf(sample, -1.0, 1.0) * 32767.0)
+		var t: float = float(i) / SAMPLE_RATE
+		var env: float = envelope_func.call(t, duration)
+		var sample: float = sin(2.0 * PI * frequency * t) * amp * env
+		var s16: int = int(clampf(sample, -1.0, 1.0) * 32767.0)
 		data.encode_s16(i * 2, s16)
 
 	var wav := AudioStreamWAV.new()
