@@ -3,6 +3,12 @@
 /android/
 .codegraph/
 
+# Godot generated UID files
+*.uid
+
+# OpenCode internal state
+.omo/run-continuation/
+
 # OS generated files
 Thumbs.db
 .DS_Store
