@@ -5,7 +5,7 @@ extends Node2D
 @export var spawn_interval := 1.5
 @export var powerup_interval := 5.0
 
-var score := 0
+var score := 0.0
 var game_running := false
 var difficulty_timer := 0.0
 
@@ -47,7 +47,7 @@ func _start_game():
 	score_label.text = "Score: 0"
 
 	game_running = true
-	score = 0
+	score = 0.0
 	difficulty_timer = 0.0
 	spawn_timer.wait_time = spawn_interval
 	powerup_timer.wait_time = powerup_interval
