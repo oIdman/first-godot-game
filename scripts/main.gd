@@ -18,6 +18,9 @@ var difficulty_timer := 0.0
 @onready var powerup_timer := $PowerUpTimer
 
 func _ready():
+	# Center camera on the play area so player clamp (0,0)-(w,h) is fully visible
+	shake_camera.position = get_viewport_rect().size / 2
+
 	spawn_timer.timeout.connect(_on_spawn)
 	powerup_timer.timeout.connect(_on_powerup_spawn)
 	start_button.pressed.connect(_start_game)
