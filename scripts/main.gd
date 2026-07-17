@@ -12,6 +12,7 @@ var difficulty_timer := 0.0
 @onready var score_label := $UI/ScoreLabel
 @onready var start_button := $UI/StartButton
 @onready var title_label := $UI/TitleLabel
+@onready var shake_camera := $CameraShake
 
 func _ready():
 	spawn_timer.timeout.connect(_on_spawn)
@@ -47,6 +48,8 @@ func _start_game():
 	player.show()
 	spawn_timer.start()
 
+	SoundManager.play_start()
+
 func _on_spawn():
 	var enemy := enemy_scene.instantiate()
 	var viewport_size := get_viewport_rect().size
@@ -74,6 +77,12 @@ func _on_player_hit():
 	spawn_timer.stop()
 	player.active = false
 	player.hide()
+
+	# Audio-visual feedback
+	SoundManager.play_hit()
+	shake_camera.shake()
+	await get_tree().create_timer(0.3).timeout
+	SoundManager.play_game_over()
 
 	# Show game over overlay
 	var game_over := preload("res://ui/GameOver.tscn").instantiate()

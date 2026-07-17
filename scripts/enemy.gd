@@ -10,6 +10,7 @@ func _ready():
 	add_to_group("enemy")
 	$VisibleOnScreenNotifier2D.screen_exited.connect(queue_free)
 	queue_redraw()
+	SoundManager.play_spawn()
 
 func _process(delta):
 	position += direction * speed * delta
