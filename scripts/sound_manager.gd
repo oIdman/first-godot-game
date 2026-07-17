@@ -30,6 +30,20 @@ func play_spawn() -> void:
 	_play(wav)
 
 
+func play_pickup() -> void:
+	var wav := _generate_tone(880.0, 0.08, 0.3, _envelope_fast_decay)
+	_play(wav)
+	await get_tree().create_timer(0.06).timeout
+	var wav2 := _generate_tone(1100.0, 0.08, 0.3, _envelope_fast_decay)
+	_play(wav2)
+
+
+func play_shield_break() -> void:
+	# Short noise burst (square-ish by using high freq + fast decay)
+	var wav := _generate_tone(200.0, 0.15, 0.5, _envelope_fast_decay)
+	_play(wav)
+
+
 func play_start() -> void:
 	var wav := _generate_tone(523.0, 0.1, 0.4, _envelope_fast_decay)
 	_play(wav)
